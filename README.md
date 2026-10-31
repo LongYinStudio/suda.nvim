@@ -1,5 +1,7 @@
 # suda.nvim
 
+[English](README.md) | [中文](README_zh.md)
+
 Transparent privilege elevation for Neovim without virtual URI hacks.
 
 Unlike `suda.vim`, `suda.nvim` preserves the original file path instead of prefixing `suda://`, ensuring that LSP servers, Treesitter, formatters, and diagnostics continue to function normally.
