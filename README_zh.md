@@ -6,6 +6,8 @@
 
 与 `suda.vim` 不同，`suda.nvim` 完全保留原生的文件路径，不使用类似 `suda://` 的虚拟协议前缀，确保 LSP 服务器、Treesitter、代码格式化与诊断等工具 100% 正常工作。
 
+![suda.nvim 演示](.github/assets/suda.gif)
+
 ## 特性
 
 - **零 URI 污染**：缓冲区始终保持真实文件路径（如 `/etc/hosts`）。

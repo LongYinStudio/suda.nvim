@@ -6,6 +6,8 @@ Transparent privilege elevation for Neovim without virtual URI hacks.
 
 Unlike `suda.vim`, `suda.nvim` preserves the original file path instead of prefixing `suda://`, ensuring that LSP servers, Treesitter, formatters, and diagnostics continue to function normally.
 
+![suda.nvim demo](.github/assets/suda.gif)
+
 ## Features
 
 - **Zero-URI overhead**: Buffers keep their actual paths (`/etc/hosts`).
