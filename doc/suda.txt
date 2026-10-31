@@ -1,0 +1,74 @@
+*suda.txt*           Transparent Sudo Read/Write for Neovim
+
+Author: LongYinStudio
+License: MIT
+
+==============================================================================
+CONTENTS                                                       *suda-contents*
+
+  1. Introduction .............................. |suda-introduction|
+  2. Features .................................. |suda-features|
+  3. Commands .................................. |suda-commands|
+  4. Configuration ............................. |suda-configuration|
+  5. Healthcheck ............................... |suda-healthcheck|
+
+==============================================================================
+1. INTRODUCTION                                            *suda-introduction*
+
+suda.nvim is a modern, pure-Lua plugin for Neovim that provides completely
+transparent privilege elevation (sudo/doas) for reading and writing files.
+
+Unlike legacy plugins, suda.nvim NEVER modifies buffer paths to pseudo-URIs
+(like suda://), ensuring 100% compatibility with LSP servers, Treesitter,
+formatters, linters, and fuzzy finders.
+
+==============================================================================
+2. FEATURES                                                    *suda-features*
+
+- Zero URI Overhead: Preserves genuine file paths (/etc/hosts).
+- Native :w & :wq: Type :w naturally on read-only files; suda automatically
+  elevates privileges.
+- 100% Focused Password Input: Uses synchronous password input to prevent
+  unfocused popup glitches.
+- Credential Caching: Subsequent saves within the sudo timeout (e.g., 15 mins)
+  save in ~2 milliseconds without prompting.
+- Metadata Preservation: Streams content directly using `sudo tee`, preserving
+  file inodes, ownership, mode, and symlink targets.
+
+==============================================================================
+3. COMMANDS                                                        *suda-commands*
+
+:SudaWrite [file]                                                 *:SudaWrite*
+:SudoWrite [file]                                                 *:SudoWrite*
+    Write current buffer (or selected line range) using sudo.
+
+:SudaRead [file]                                                   *:SudaRead*
+:SudoRead [file]                                                   *:SudoRead*
+    Read given file (or current buffer file) using sudo.
+
+:SudaEdit [file]                                                   *:SudaEdit*
+:SudoEdit [file]                                                   *:SudoEdit*
+    Edit file with sudo permissions.
+
+==============================================================================
+4. CONFIGURATION                                            *suda-configuration*
+
+Setup with default options: >lua
+    require("suda").setup({
+      cmd = "sudo",                -- Elevation command ("sudo", "doas")
+      auto_save = true,            -- Automatically elevate on :w for read-only files
+      auto_read = true,            -- Automatically read unreadable files on open
+      prompt = "[sudo] password: ",    -- Password prompt
+      silent = false,              -- Mute notification messages
+    })
+<
+
+==============================================================================
+5. HEALTHCHECK                                                *suda-healthcheck*
+
+Run the healthcheck to verify your environment: >vim
+    :checkhealth suda
+<
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:

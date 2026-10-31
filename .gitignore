@@ -1,0 +1,17 @@
+# Neovim & Lua
+.luarc.json
+*.so
+*.o
+*.luac
+.directory
+
+# Tags & Logs
+tags
+tags.*
+*.log
+
+# OS & Editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
